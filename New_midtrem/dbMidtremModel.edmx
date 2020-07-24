@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MidDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="fItemBox">
+          <Key>
+            <PropertyRef Name="fBlockId" />
+          </Key>
+          <Property Name="fBlockId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fID" Type="int" Nullable="false" />
+          <Property Name="fMemberID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tMember">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fSex" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fBirthday" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fPhone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fPhoto" Type="nvarchar" MaxLength="50" />
+          <Property Name="fGold" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tNPC">
+          <Key>
+            <PropertyRef Name="fID" />
+          </Key>
+          <Property Name="fID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fGold" Type="int" Nullable="false" />
+          <Property Name="fPhoto" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tShop">
+          <Key>
+            <PropertyRef Name="fID" />
+          </Key>
+          <Property Name="fID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fPrice" Type="int" Nullable="false" />
+          <Property Name="fPhoto" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="MidDataBaseModelStoreContainer">
+          <EntitySet Name="fItemBox" EntityType="Self.fItemBox" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tMember" EntityType="Self.tMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tNPC" EntityType="Self.tNPC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tShop" EntityType="Self.tShop" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MidDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tMember">
+          <Key>
+            <PropertyRef Name="fId" />
+          </Key>
+          <Property Name="fId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fSex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fBirthday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fPhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fGold" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MidDataBaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tMember" EntityType="Self.tMember" />
+          <EntitySet Name="tNPC" EntityType="MidDataBaseModel.tNPC" />
+          <EntitySet Name="tShop" EntityType="MidDataBaseModel.tShop" />
+          <EntitySet Name="fItemBox" EntityType="MidDataBaseModel.fItemBox" />
+          <AssociationSet Name="FK_fItemBox_tShop" Association="MidDataBaseModel.FK_fItemBox_tShop">
+            <End Role="tShop" EntitySet="tShop" />
+            <End Role="fItemBox" EntitySet="fItemBox" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tNPC">
+          <Key>
+            <PropertyRef Name="fID" />
+          </Key>
+          <Property Name="fID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fGold" Type="Int32" Nullable="false" />
+          <Property Name="fPhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tShop">
+          <Key>
+            <PropertyRef Name="fID" />
+          </Key>
+          <Property Name="fID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fPrice" Type="Int32" Nullable="false" />
+          <Property Name="fPhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="fItemBox" Relationship="MidDataBaseModel.FK_fItemBox_tShop" FromRole="tShop" ToRole="fItemBox" />
+        </EntityType>
+        <EntityType Name="fItemBox">
+          <Key>
+            <PropertyRef Name="fBlockId" />
+          </Key>
+          <Property Name="fBlockId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tShop" Relationship="MidDataBaseModel.FK_fItemBox_tShop" FromRole="fItemBox" ToRole="tShop" />
+          <Property Name="fMemberID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_fItemBox_tShop">
+          <End Type="MidDataBaseModel.tShop" Role="tShop" Multiplicity="1" />
+          <End Type="MidDataBaseModel.fItemBox" Role="fItemBox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tShop">
+              <PropertyRef Name="fID" />
+            </Principal>
+            <Dependent Role="fItemBox">
+              <PropertyRef Name="fID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MidDataBaseModelStoreContainer" CdmEntityContainer="MidDataBaseEntities">
+          <EntitySetMapping Name="tMember">
+            <EntityTypeMapping TypeName="MidDataBaseModel.tMember">
+              <MappingFragment StoreEntitySet="tMember">
+                <ScalarProperty Name="fGold" ColumnName="fGold" />
+                <ScalarProperty Name="fPhoto" ColumnName="fPhoto" />
+                <ScalarProperty Name="fId" ColumnName="fId" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fSex" ColumnName="fSex" />
+                <ScalarProperty Name="fBirthday" ColumnName="fBirthday" />
+                <ScalarProperty Name="fPhone" ColumnName="fPhone" />
+                <ScalarProperty Name="fEmail" ColumnName="fEmail" />
+                <ScalarProperty Name="fAddress" ColumnName="fAddress" />
+                <ScalarProperty Name="fAccount" ColumnName="fAccount" />
+                <ScalarProperty Name="fPassword" ColumnName="fPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tNPC">
+            <EntityTypeMapping TypeName="MidDataBaseModel.tNPC">
+              <MappingFragment StoreEntitySet="tNPC">
+                <ScalarProperty Name="fPhoto" ColumnName="fPhoto" />
+                <ScalarProperty Name="fGold" ColumnName="fGold" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fID" ColumnName="fID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tShop">
+            <EntityTypeMapping TypeName="MidDataBaseModel.tShop">
+              <MappingFragment StoreEntitySet="tShop">
+                <ScalarProperty Name="fPhoto" ColumnName="fPhoto" />
+                <ScalarProperty Name="fPrice" ColumnName="fPrice" />
+                <ScalarProperty Name="fName" ColumnName="fName" />
+                <ScalarProperty Name="fID" ColumnName="fID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fItemBox">
+            <EntityTypeMapping TypeName="MidDataBaseModel.fItemBox">
+              <MappingFragment StoreEntitySet="fItemBox">
+                <ScalarProperty Name="fMemberID" ColumnName="fMemberID" />
+                <ScalarProperty Name="fID" ColumnName="fID" />
+                <ScalarProperty Name="fBlockId" ColumnName="fBlockId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
